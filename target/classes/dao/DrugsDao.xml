@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.DrugsDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Drugs">
+    <id column="drug_ID" jdbcType="INTEGER" property="drugId" />
+    <result column="drug_code" jdbcType="VARCHAR" property="drugCode" />
+    <result column="drug_name" jdbcType="VARCHAR" property="drugName" />
+    <result column="drug_format" jdbcType="VARCHAR" property="drugFormat" />
+    <result column="drug_unit" jdbcType="VARCHAR" property="drugUnit" />
+    <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="drug_dosageID" jdbcType="INTEGER" property="drugDosageid" />
+    <result column="drug_type" jdbcType="INTEGER" property="drugType" />
+    <result column="drug_price" jdbcType="DECIMAL" property="drugPrice" />
+    <result column="mnemonic_code" jdbcType="VARCHAR" property="mnemonicCode" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="d_delflag" jdbcType="INTEGER" property="dDelflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    drug_ID, drug_code, drug_name, drug_format, drug_unit, manufacturer, drug_dosageID, 
+    drug_type, drug_price, mnemonic_code, creation_date, d_delflag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drugs
+    where drug_ID = #{drugId,jdbcType=INTEGER}
+  </select>
+    <select id="searchdrugname" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from drugs
+      <where>
+        <if test="drugName != null and drugName != '' ">
+          <bind name="newdrugName" value="'%'+drugName+'%'"/>
+          and drug_name like #{newdrugName}
+        </if>
+      </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drugs
+    where drug_ID = #{drugId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="drug_ID" keyProperty="drugId" parameterType="com.ssmhis.model.Drugs" useGeneratedKeys="true">
+    insert into drugs (drug_code, drug_name, drug_format, 
+      drug_unit, manufacturer, drug_dosageID, 
+      drug_type, drug_price, mnemonic_code, 
+      creation_date, d_delflag)
+    values (#{drugCode,jdbcType=VARCHAR}, #{drugName,jdbcType=VARCHAR}, #{drugFormat,jdbcType=VARCHAR}, 
+      #{drugUnit,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{drugDosageid,jdbcType=INTEGER}, 
+      #{drugType,jdbcType=INTEGER}, #{drugPrice,jdbcType=DECIMAL}, #{mnemonicCode,jdbcType=VARCHAR}, 
+      #{creationDate,jdbcType=TIMESTAMP}, #{dDelflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="drug_ID" keyProperty="drugId" parameterType="com.ssmhis.model.Drugs" useGeneratedKeys="true">
+    insert into drugs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="drugCode != null">
+        drug_code,
+      </if>
+      <if test="drugName != null">
+        drug_name,
+      </if>
+      <if test="drugFormat != null">
+        drug_format,
+      </if>
+      <if test="drugUnit != null">
+        drug_unit,
+      </if>
+      <if test="manufacturer != null">
+        manufacturer,
+      </if>
+      <if test="drugDosageid != null">
+        drug_dosageID,
+      </if>
+      <if test="drugType != null">
+        drug_type,
+      </if>
+      <if test="drugPrice != null">
+        drug_price,
+      </if>
+      <if test="mnemonicCode != null">
+        mnemonic_code,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="dDelflag != null">
+        d_delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="drugCode != null">
+        #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null">
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugFormat != null">
+        #{drugFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUnit != null">
+        #{drugUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="drugDosageid != null">
+        #{drugDosageid,jdbcType=INTEGER},
+      </if>
+      <if test="drugType != null">
+        #{drugType,jdbcType=INTEGER},
+      </if>
+      <if test="drugPrice != null">
+        #{drugPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="mnemonicCode != null">
+        #{mnemonicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dDelflag != null">
+        #{dDelflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Drugs">
+    update drugs
+    <set>
+      <if test="drugCode != null">
+        drug_code = #{drugCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null">
+        drug_name = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugFormat != null">
+        drug_format = #{drugFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUnit != null">
+        drug_unit = #{drugUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="drugDosageid != null">
+        drug_dosageID = #{drugDosageid,jdbcType=INTEGER},
+      </if>
+      <if test="drugType != null">
+        drug_type = #{drugType,jdbcType=INTEGER},
+      </if>
+      <if test="drugPrice != null">
+        drug_price = #{drugPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="mnemonicCode != null">
+        mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dDelflag != null">
+        d_delflag = #{dDelflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where drug_ID = #{drugId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Drugs">
+    update drugs
+    set drug_code = #{drugCode,jdbcType=VARCHAR},
+      drug_name = #{drugName,jdbcType=VARCHAR},
+      drug_format = #{drugFormat,jdbcType=VARCHAR},
+      drug_unit = #{drugUnit,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      drug_dosageID = #{drugDosageid,jdbcType=INTEGER},
+      drug_type = #{drugType,jdbcType=INTEGER},
+      drug_price = #{drugPrice,jdbcType=DECIMAL},
+      mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      d_delflag = #{dDelflag,jdbcType=INTEGER}
+    where drug_ID = #{drugId,jdbcType=INTEGER}
+  </update>
+</mapper>

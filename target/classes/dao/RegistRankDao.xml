@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.RegistRankDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.RegistRank">
+    <id column="reg_rankID" jdbcType="INTEGER" property="regRankid" />
+    <result column="rank_code" jdbcType="VARCHAR" property="rankCode" />
+    <result column="rank_name" jdbcType="VARCHAR" property="rankName" />
+    <result column="show_seqNum" jdbcType="INTEGER" property="showSeqnum" />
+    <result column="reg_fee" jdbcType="INTEGER" property="regFee" />
+    <result column="reg_limit" jdbcType="INTEGER" property="regLimit" />
+    <result column="delFlag" jdbcType="INTEGER" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    reg_rankID, rank_code, rank_name, show_seqNum, reg_fee, reg_limit, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from regist_rank
+    where reg_rankID = #{regRankid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from regist_rank
+    where reg_rankID = #{regRankid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="reg_rankID" keyProperty="regRankid" parameterType="com.ssmhis.model.RegistRank" useGeneratedKeys="true">
+    insert into regist_rank (rank_code, rank_name, show_seqNum, 
+      reg_fee, reg_limit, delFlag
+      )
+    values (#{rankCode,jdbcType=VARCHAR}, #{rankName,jdbcType=VARCHAR}, #{showSeqnum,jdbcType=INTEGER}, 
+      #{regFee,jdbcType=INTEGER}, #{regLimit,jdbcType=INTEGER}, #{delflag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="reg_rankID" keyProperty="regRankid" parameterType="com.ssmhis.model.RegistRank" useGeneratedKeys="true">
+    insert into regist_rank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rankCode != null">
+        rank_code,
+      </if>
+      <if test="rankName != null">
+        rank_name,
+      </if>
+      <if test="showSeqnum != null">
+        show_seqNum,
+      </if>
+      <if test="regFee != null">
+        reg_fee,
+      </if>
+      <if test="regLimit != null">
+        reg_limit,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rankCode != null">
+        #{rankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rankName != null">
+        #{rankName,jdbcType=VARCHAR},
+      </if>
+      <if test="showSeqnum != null">
+        #{showSeqnum,jdbcType=INTEGER},
+      </if>
+      <if test="regFee != null">
+        #{regFee,jdbcType=INTEGER},
+      </if>
+      <if test="regLimit != null">
+        #{regLimit,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.RegistRank">
+    update regist_rank
+    <set>
+      <if test="rankCode != null">
+        rank_code = #{rankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rankName != null">
+        rank_name = #{rankName,jdbcType=VARCHAR},
+      </if>
+      <if test="showSeqnum != null">
+        show_seqNum = #{showSeqnum,jdbcType=INTEGER},
+      </if>
+      <if test="regFee != null">
+        reg_fee = #{regFee,jdbcType=INTEGER},
+      </if>
+      <if test="regLimit != null">
+        reg_limit = #{regLimit,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where reg_rankID = #{regRankid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.RegistRank">
+    update regist_rank
+    set rank_code = #{rankCode,jdbcType=VARCHAR},
+      rank_name = #{rankName,jdbcType=VARCHAR},
+      show_seqNum = #{showSeqnum,jdbcType=INTEGER},
+      reg_fee = #{regFee,jdbcType=INTEGER},
+      reg_limit = #{regLimit,jdbcType=INTEGER},
+      delFlag = #{delflag,jdbcType=INTEGER}
+    where reg_rankID = #{regRankid,jdbcType=INTEGER}
+  </update>
+</mapper>

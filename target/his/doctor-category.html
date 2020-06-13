@@ -1,0 +1,308 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="lib/html5shiv.js"></script>
+	<script type="text/javascript" src="lib/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+	<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+	<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+
+	<!--[if IE 6]>
+	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<title>医生诊疗</title>
+</head>
+<body>
+<!--添加西医诊断的模态框-->
+<div class="modal fade" id="addBox" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加西医诊断</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="btn_charge">收费</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<table class="table" style="background-color: white">
+	<tr>
+		<td width="25%"  id="pati-la">
+			<div class="row cl">
+				<nav class="breadcrumb" style="height: 45px;width: 330px">患者选择：<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"  href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+			</div>
+			<div class="pull-right">
+				患者名：<input class="input-text radius" style="width: 70%" id="search">
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary radius" id="btn-simple-search"><i class="icon Hui-iconfont">&#xe709;</i></button>
+				</div>
+			</div >
+			<!-- Nav tabs -->
+			<ul id="myTab" class="nav nav-tabs">
+				<li  class="active">
+					<a href="#self"data-toggle="tab">本人</a></li>
+				<li><a href="#dept" data-toggle="tab">科室</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div id="myTabContent" class="tab-content" >
+				<div class="tab-pane fade in active" id="self"><br>
+					<p>待诊患者</p>
+					<div class="table-responsive" style="height: 260px">
+						<table id="doc-table2" class="table" style="height: 240px">
+							<thead>
+							<tr class="text-c">
+								<th>病历号</th>
+								<th>姓名</th>
+								<th>年龄</th>
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<br>
+					<p>已诊患者</p>
+					<div class="table-responsive" style="height: 260px">
+						<table id="doc-table1" class="table" style="height: 240px">
+							<thead>
+							<tr class="text-c">
+								<th>病历号</th>
+								<th>姓名</th>
+								<th>年龄</th>
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="dept"><br>
+					<p>待诊患者</p>
+					<div class="table-responsive" style="height: 260px">
+						<table id="dept-table2" class="table" style="height: 240px">
+							<thead>
+							<tr class="text-c">
+								<th>病历号</th>
+								<th>姓名</th>
+								<th>年龄</th>
+							</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<br>
+					<p>已诊患者</p>
+					<div class="table-responsive">
+						<table id="dept-table1" class="table-responsive" style="height: 240px">
+							<thead>
+							<tr class="text-c">
+								<th>病历号</th>
+								<th>姓名</th>
+								<th>年龄</th>
+							</tr>
+							</thead>
+							<tbody>
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</td>
+
+		<td style="width: 75%">
+			<div >
+				<div class="row cl">
+					<div class="col-xs-1  col-sm-2">
+						<button type="button" id="btn-hidden" value="false" class="btn btn-primary btn-sm radius">隐藏患者栏</button>
+					</div>
+					<label id="label-info" class="col-xs-1 col-sm-5"></label>
+				</div>
+				<br>
+				<form  id="form-article-add">
+					<div>
+						<ul id="sbTab" class="nav nav-tabs">
+							<li role="presentation" class="active"><a href="#mediRecord" data-toggle="tab">病历首页</a></li>
+							<li role="presentation"><a href="#myCheck" data-toggle="tab">检查申请</a></li>
+							<li><a href="#myExam" data-toggle="tab">检验申请</a></li>
+							<li><a href="#myConfirm" data-toggle="tab">门诊确诊<span class="c-red">*</span></a></li>
+							<li><a href="#manage" data-toggle="tab">处置申请<span class="c-red">*</span></a></li>
+							<li><a href="#mDrug" data-toggle="tab">成药处方<span class="c-red">*</span></a></li>
+							<li><a href="#cDrug" data-toggle="tab">草药处方<span class="c-red">*</span></a></li>
+							<li><a href="#feeFind" data-toggle="tab">费用查询<span class="c-red">*</span></a></li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div id="sbTabContent" class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="mediRecord"><br>
+								<div class="row cl">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+									<button class="btn btn-primary" id="save_info"><i class="icon Hui-iconfont">&#xe60c;</i> 暂存</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+									<button class="btn btn-success"><i class="icon Hui-iconfont">&#xe6e1;</i> 提交</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+									<button class="btn btn-warning"><i class="icon Hui-iconfont">&#xe609;</i> 清空所有</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+									<button class="btn btn-primary"><i class="icon Hui-iconfont">&#xe68f;</i> 刷新</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+								</div><br>
+								<label class="control-label" style="color: #2aabd2">病史内容：</label><br>
+								<form action="" method="post" class="form form-horizontal" id="form-medi-add">
+									<div class="row cl">
+										<label class="form-label col-xs-1 col-sm-1" style="text-align: right">主诉</label>
+										<textarea class="form-control" style="width: 80%" rows="1"></textarea>
+									</div><br>
+									<div class="row cl">
+										<label class="form-label col-xs-1 col-sm-1" style="text-align: right">现病史</label>
+										<textarea class="form-control" style="width: 80%" rows="1"></textarea>
+									</div><br>
+									<div class="row cl">
+										<label class="form-label col-xs-1 col-sm-1" style="text-align: right">现病治疗情况</label>
+										<textarea class="form-control" style="width: 80%" rows="2"></textarea>
+									</div><br>
+									<div class="row cl">
+										<label class="form-label col-xs-1 col-sm-1" style="text-align: right">既往史</label>
+										<textarea class="form-control" style="width: 80%" rows="2"></textarea>
+									</div><br>
+									<div class="row cl">
+										<label class="form-label col-xs-1 col-sm-1" style="text-align: right">过敏史</label>
+										<textarea class="form-control" style="width: 80%" rows="2"></textarea>
+									</div><br>
+									<div class="row cl">
+										<label class="form-label col-xs-1 col-sm-1" style="text-align: right">体格检查</label>
+										<textarea class="form-control" style="width: 80%" rows="2"></textarea>
+									</div><br>
+								</form><br>
+								<label class="control-label" style="color: #2aabd2">评估\诊断：</label><br>
+								<div class="panel panel-default" style="width: 84%;margin: auto">
+                                    <div class="panel-heading t" style="font-size: 1.3em">西医诊断
+                                        <button type="button" class="btn-link" id="del-dise" style="margin-left: 80%;font-size: 1em">删除</button>
+                                        <button type="button" class="btn-link" id="add-dise" data-toggle="modal" data-target="#addBox" style="font-size: 1em">添加</button>
+                                    </div>
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="text-l">
+                                                <th width="8%" class="text-c"><input type="checkbox"></th>
+                                                <th width="8%">ICD编码</th>
+                                                <th width="40%">名称</th>
+                                                <th width="18%">发病时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-l">
+                                                <td width="8%" class="text-c">sdf</td>
+                                                <td width="8%">sdf</td>
+                                                <td width="40%">sdf</td>
+                                                <td width="18%">sdf</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="myCheck">
+								www
+							</div>
+							<div class="tab-pane fade" id="myExam">
+
+							</div>
+							<div class="tab-pane fade" id="myConfirm">
+
+							</div>
+							<div class="tab-pane fade" id="manage">
+
+							</div>
+							<div class="tab-pane fade" id="mDrug">
+
+							</div>
+							<div class="tab-pane fade" id="cDrug">
+
+							</div>
+							<div class="tab-pane fade" id="feeFind">
+
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</td>
+	</tr>
+</table>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<!--/_footer 作为公共模版分离出去-->
+<script>
+/*	$(function () {
+		$("#myTab a:first").tab('show');
+	});*/
+	$('#sbTab a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show')
+	});
+</script>
+<script type="text/javascript">
+
+	/*为动态创建的表中每一行绑定单击事件，获取该行的数据*/
+	$(document).on("click",".mytr",function () {
+		var td = $(this).find("td");
+		var medRecnum = td.eq(0).html();
+		var patName = td.eq(1).html();
+		var age = td.eq(2).html();
+		if (td.eq(3).html() == 71){
+			var gender = "男";
+		}else if (td.eq(3).html() == 72){
+			var gender = "女";
+		}
+
+		var info = "病历号："+medRecnum+"  姓名："+patName+"  年龄："+age+"  性别："+gender;
+		//先清空
+		$("#label-info").html('');
+		$("#label-info").html(info);
+	})
+	/*隐藏或显示患者栏*/
+	$("#btn-hidden").click(function () {
+		if ($("#btn-hidden").html()=="显示患者栏"){
+			$("#btn-hidden").html("");
+			$("#btn-hidden").html("隐藏患者栏");
+		}else if($("#btn-hidden").html()=="隐藏患者栏"){
+			$("#btn-hidden").html("");
+			$("#btn-hidden").html("显示患者栏");
+		}
+		$("#pati-la").toggle();
+	})
+    /*添加西医诊断*/
+    $("#add-dise").click(function () {
+        $("#addBox").modal({
+            backdrop: 'static'
+        });
+    })
+function addDise() {
+    $("#addBox").modal({
+        backdrop: 'static'
+    });
+}
+</script>
+</body>
+</html>

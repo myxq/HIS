@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+body{
+    font-family:"Helvetica Neue",Helvetica,Arial,"Microsoft Yahei UI",
+    "Microsoft Yahei",SimHei,"\5B8B\4F53",simsun,sans-serif;
+    color:#666;
+}
+
+#myCarousel{
+    margin:0 0 0 0;
+}
+.carousel-inner img{
+    margin: 0 auto;
+}
+/*.carousel-control{
+	font-size:60px;
+}*/
+.tab-h2{
+    font-size:20px;
+    text-align:center;
+    letter-spacing:4px;
+    color:#0059b2;
+}
+.tab-p {
+    font-size:15px;
+    text-align:center;
+    letter-spacing:1px;
+    color:#999;
+    margin:5px 0 5px 0;
+}
+.tab1{
+    margin:10px 0;
+    color:#666;
+}
+.tab1 .media-left{
+    margin:0 auto;
+}
+.tab1 .media-heading{
+    margin:0 0 0 0;
+}
+.tab1 .col{
+    padding:10px;
+}
+
+#footer {
+    background-color:#eee;
+    border-top:1px solid #ccc;
+    padding: 20px;
+    text-align:center;
+}
+
+@media (min-width:768px){
+    .tab-h2{
+        font-size:26px;
+    }
+    .tab-p{
+        font-size:16px;
+    }
+}
+@media (min-width:992px){
+    .tab-h2{
+        font-size:42px;
+    }
+    .tab-p{
+        font-size:17px;
+    }
+}
+@media (min-width:1200px){
+    .tab-h2{
+        font-size:50px;
+    }
+    .tab-p{
+        font-size:18px;
+    }
+}
+a{
+    text-decoration:none;
+}
+/* header{
+	height:100px;
+	margin:0 1px 1px 1px;
+	background:#467aa7;
+	color:#ffffff;
+} */

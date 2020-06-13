@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.PrescriptionDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Prescription">
+    <id column="prescription_ID" jdbcType="INTEGER" property="prescriptionId" />
+    <result column="p_regID" jdbcType="INTEGER" property="pRegid" />
+    <result column="prescrip_name" jdbcType="VARCHAR" property="prescripName" />
+    <result column="open_docID" jdbcType="INTEGER" property="openDocid" />
+    <result column="open_time" jdbcType="TIMESTAMP" property="openTime" />
+    <result column="prescrip_state" jdbcType="INTEGER" property="prescripState" />
+    <result column="delFlag" jdbcType="INTEGER" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    prescription_ID, p_regID, prescrip_name, open_docID, open_time, prescrip_state, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prescription
+    where prescription_ID = #{prescriptionId,jdbcType=INTEGER}
+  </select>
+    <select id="queryPresID" resultType="java.lang.Integer">
+      select max(prescription_ID)
+      from prescription
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prescription
+    where prescription_ID = #{prescriptionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="prescription_ID" keyProperty="prescriptionId" parameterType="com.ssmhis.model.Prescription" useGeneratedKeys="true">
+    insert into prescription (p_regID, prescrip_name, open_docID, 
+      open_time, prescrip_state, delFlag
+      )
+    values (#{pRegid,jdbcType=INTEGER}, #{prescripName,jdbcType=VARCHAR}, #{openDocid,jdbcType=INTEGER}, 
+      #{openTime,jdbcType=TIMESTAMP}, #{prescripState,jdbcType=INTEGER}, #{delflag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="prescription_ID" keyProperty="prescriptionId" parameterType="com.ssmhis.model.Prescription" useGeneratedKeys="true">
+    insert into prescription
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pRegid != null">
+        p_regID,
+      </if>
+      <if test="prescripName != null">
+        prescrip_name,
+      </if>
+      <if test="openDocid != null">
+        open_docID,
+      </if>
+      <if test="openTime != null">
+        open_time,
+      </if>
+      <if test="prescripState != null">
+        prescrip_state,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pRegid != null">
+        #{pRegid,jdbcType=INTEGER},
+      </if>
+      <if test="prescripName != null">
+        #{prescripName,jdbcType=VARCHAR},
+      </if>
+      <if test="openDocid != null">
+        #{openDocid,jdbcType=INTEGER},
+      </if>
+      <if test="openTime != null">
+        #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prescripState != null">
+        #{prescripState,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Prescription">
+    update prescription
+    <set>
+      <if test="pRegid != null">
+        p_regID = #{pRegid,jdbcType=INTEGER},
+      </if>
+      <if test="prescripName != null">
+        prescrip_name = #{prescripName,jdbcType=VARCHAR},
+      </if>
+      <if test="openDocid != null">
+        open_docID = #{openDocid,jdbcType=INTEGER},
+      </if>
+      <if test="openTime != null">
+        open_time = #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prescripState != null">
+        prescrip_state = #{prescripState,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where prescription_ID = #{prescriptionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Prescription">
+    update prescription
+    set p_regID = #{pRegid,jdbcType=INTEGER},
+      prescrip_name = #{prescripName,jdbcType=VARCHAR},
+      open_docID = #{openDocid,jdbcType=INTEGER},
+      open_time = #{openTime,jdbcType=TIMESTAMP},
+      prescrip_state = #{prescripState,jdbcType=INTEGER},
+      delFlag = #{delflag,jdbcType=INTEGER}
+    where prescription_ID = #{prescriptionId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--  <base href="http://mathe.neu.edu.cn:80/"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <link rel="stylesheet" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-table.css">
+    <link rel="stylesheet" type="text/css" href="static/css/login.css"/>
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="/lib/html5shiv.js"></script>
+    <script type="text/javascript" src="/lib/respond.min.js"></script>
+    <![endif]-->
+    <script src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="static/bootstrap-3.3.7-dist/js/bootstrap-table.js"></script>
+    <script src="static/js/login.js"></script>
+    <link rel="shortcut icon" href="/favicon.ico" >
+    <!--[if IE 6]>
+    <script type="text/javascript" src="/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>东软云医院HIS管理平台</title>
+    <script language="javascript">
+        if(top.location!==self.location){
+            top.location.href=self.location.href;
+        }
+    </script>
+<!--    <script>
+
+        //刷新验证码
+        function changeImg() {
+            var imgSrc = $("#imgObj");
+            var src = imgSrc.attr("src");
+            imgSrc.attr("src", chgUrl(src));
+        }
+        //时间戳
+        //为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
+        function chgUrl(url) {
+            var timestamp = (new Date()).valueOf();
+            url = url.substring(0, 17);
+            if ((url.indexOf("&") >= 0)) {
+                url = url + "×tamp=" + timestamp;
+            } else {
+                url = url + "?timestamp=" + timestamp;
+            }
+            return url;
+        }
+        function validateImg() {
+            if($("#validateCode").val().length==4){
+                $.ajax({
+                    type : 'POST',
+                    url : 'checkcode',
+                    async : false ,
+                    data : {
+                        validateCode : $("#validateCode").val()
+                    },
+                    success : function(data,response,status){
+                        var imgSrc = $("#imgimg");
+                        if(data){
+                            imgSrc.attr("src", "/images/ok.png");
+                        }else{
+                            $("#validateCode").val("");
+                            imgSrc.attr("src", "/images/wrong.png");
+                        }
+                    }
+                });
+            }else{
+                var imgSrc = $("#imgimg");
+                imgSrc.attr("src", "/images/wrong.png");
+            }
+
+        }
+    </script>-->
+
+</head>
+
+<body>
+
+<!--  <nav class="navbar navbar-default navbar-fixed-top">
+     <div class="container">
+         <div class="navbar-header">
+             <a href="#" class="navbar-brand">大学数学网络学习平台</a>
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+             </button>
+         </div>
+         <div class="collapse navbar-collapse" id="navbar-collapse">
+             <ul class="nav navbar-nav navbar-right" style="margin-top:0;">
+                 <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                 <li><a href="#"><span class="glyphicon glyphicon-fire"></span>预约系统</a></li>
+                 <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> 客户端下载</a></li>
+                 <li><a href="#"><span class="glyphicon glyphicon-paperclip"></span> 校内链接</a></li>
+             </ul>
+         </div>
+     </div>
+ </nav> -->
+<div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active" style="background:#496999">
+            <img src="static/images/slide1.png" alt="第一张">
+        </div>
+        <div class="item" style="background:#63546e">
+            <img src="static/images/slide2.png" alt="第二张">
+        </div>
+        <div class="item" style="background:#181969">
+            <img src="static/images/slide3.png" alt="第三张">
+        </div>
+        <div class="item" style="background:#1f1f6e">
+            <img src="static/images/slide4.png" alt="第四张">
+        </div>
+        <div class="item" style="background:#181259">
+            <img src="static/images/slide5.png" alt="第五张">
+        </div>
+    </div>
+    <a class="carousel-control left" href="#myCarousel"
+       data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="carousel-control right" href="#myCarousel"
+       data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+<div class="tab1">
+    <div class="container">
+        <h1 class="tab-h2">东软云医院HIS管理平台</h1>
+        <p class="tab-p">用心呵护您的健康！</p>
+    </div>
+</div>
+
+<div class="tab1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            通知
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="tb_departments"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col">
+                <section></section>
+                <!--<section>
+                    <div class="row">
+                        <div class="col-md-6 col">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="http://mathe.neu.edu.cn:8080/"><img alt="" class="media-object" src="/images/tab1-1.png"></a>
+                                </div>
+                                <div class="media-body">
+                                    <div style="font-size:10px;">&nbsp;</div>
+                                    <a href="http://mathe.neu.edu.cn:8080/"><h4 class="media-heading">预约系统</h4></a>
+                                    &lt;!&ndash; <p>选考系统介绍还没编。。。</p> &ndash;&gt;
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="http://math.neu.edu.cn/"><img alt="" class="media-object" src="/images/tab1-2.png"></a>
+                                </div>
+                                <div class="media-body">
+                                    <div style="font-size:5px;">&nbsp;</div>
+                                    <a href="http://math.neu.edu.cn/"><h4 class="media-heading">东北大学<br>&nbsp;&nbsp;数学系</h4></a>
+                                    &lt;!&ndash; <p>东北大学数学系介绍还没编。。。</p> &ndash;&gt;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>-->
+                <section>
+                    <h3>用户登录</h3>
+                    <br>
+                    <form id="box" action="login" method="POST" class="form-horizontal">
+                        <div id="tip" style="color:red;">
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label class="control-label" for="tiku">身&nbsp;&nbsp;&nbsp;&nbsp;份</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select name="tiku" class="form-control" id="tiku">
+                                    <option value="0">超级管理员</option>
+                                    <option value="1">医院管理员</option>
+                                    <option value="2">挂号收费员</option>
+                                    <option value="3">医生</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label  class="control-label" for="username">用户名</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名" required="required">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label class="control-label" for="userpass">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="password" name="userpass" class="form-control" id="userpass" placeholder="请输入密码" required="required">
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">
+                            <div class="col-md-3">
+                                <label class="control-label" for="validateCode">验证码</label>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" name="validateCode" id="validateCode" required="required" class="form-control" oninput="validateImg()" maxlength="4">
+                            </div>
+                            <div class="col-md-4">
+                                <img alt="验证码看不清，换一张" src="/code.action" id="imgObj" onclick="changeImg()">
+                                <img alt="验证码看不清，换一张" src="/images/error.png" id="imgimg">
+                            </div>
+                        </div>-->
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+                                <input type="submit" id="sbm" value="登录" class="btn btn-primary btn-block">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1 col"></div>
+            <div class="col-md-6 col">
+                <p>校址：辽宁省沈阳市和平区文化路三巷11号 | 邮编：110819 </p>
+                <p>电子邮箱： 3208308785@qq.com  | 电话：********</p>
+            </div>
+            <div class="col-md-5 col">
+                <p>关于我们 | 联系我们</p>
+                <p>版权©.东北大学 版权所有.</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+</body>
+</html>

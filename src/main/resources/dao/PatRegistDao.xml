@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.PatRegistDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.PatRegist">
+    <id column="pr_IDcard" jdbcType="VARCHAR" property="prIdcard" />
+    <id column="pr_regID" jdbcType="INTEGER" property="prRegid" />
+    <result column="pr_regState" jdbcType="INTEGER" property="prRegstate" />
+    <result column="pr_delFlag" jdbcType="INTEGER" property="prDelflag" />
+  </resultMap>
+
+  <resultMap id="DocPati" type="com.ssmhis.model.PatRegist">
+    <id column="pr_IDcard"  property="prIdcard" />
+    <id column="pr_regID" property="prRegid" />
+    <result column="pr_regState" property="prRegstate"/>
+    <association property="regist" javaType="com.ssmhis.model.Regist">
+      <id column="regist_id" property="registId" />
+      <result column="r_docID" property="rDocid" />
+      <result column="consult_date" property="consultDate" />
+    </association>
+    <association property="patient" javaType="com.ssmhis.model.Patient">
+      <id column="IDcard" property="idcard" />
+      <result column="pat_name" property="patName" />
+      <result column="gender" property="gender" />
+      <result column="age" property="age" />
+      <result column="age_type" property="ageType" />
+      <result column="p_medRecNum" property="pMedrecnum" />
+    </association>
+  </resultMap>
+  <resultMap id="DepPati" type="com.ssmhis.model.PatRegist">
+    <id column="pr_IDcard"  property="prIdcard" />
+    <id column="pr_regID" property="prRegid" />
+    <result column="pr_regState" property="prRegstate"/>
+    <association property="regist" javaType="com.ssmhis.model.Regist">
+      <id column="regist_id" property="registId" />
+      <result column="r_docID" property="rDocid" />
+      <result column="consult_date" property="consultDate" />
+      <association property="doctor" javaType="com.ssmhis.model.Doctor">
+        <id column="doc_ID" jdbcType="INTEGER" property="docId" />
+        <result column="doc_depID" jdbcType="INTEGER" property="docDepid" />
+      </association>
+    </association>
+    <association property="patient" javaType="com.ssmhis.model.Patient">
+      <id column="IDcard" property="idcard" />
+      <result column="pat_name" property="patName" />
+      <result column="gender" property="gender" />
+      <result column="age" property="age" />
+      <result column="age_type" property="ageType" />
+      <result column="p_medRecNum" property="pMedrecnum" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pr_IDcard , pr_regID, pr_regState, pr_delFlag
+  </sql>
+  <sql id="DocPati_List">
+    pr_IDcard pIc, pr_regID prI, pr_regState, regist_id , r_docID,
+    consult_date, IDcard , pat_name, gender, age, age_type, p_medRecNum
+  </sql>
+  <sql id="DepPati_List">
+     pr_IDcard pIc, pr_regID prI, pr_regState, regist_id , r_docID rdI,
+     doc_ID,  doc_depID, consult_date, IDcard , pat_name, gender, age,
+     age_type, p_medRecNum
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.ssmhis.model.PatRegistKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pat_regist
+    where pr_IDcard = #{prIdcard,jdbcType=VARCHAR}
+      and pr_regID = #{prRegid,jdbcType=INTEGER}
+  </select>
+  <select id="queryDocPati" resultMap="DocPati">
+    select
+    <include refid="DocPati_List"/>
+    from pat_regist pr,regist r,patient p
+    where pr.pr_regID = r.regist_id
+    and pr.pr_IDcard = p.IDcard
+    and pr_regState != 3
+    and r.r_docID = #{rDocid}
+    and r.consult_date = #{consultDate}
+  </select>
+  <select id="querydepPatient" resultMap="DepPati">
+    select
+    <include refid="DepPati_List"/>
+    from pat_regist pr,regist r,patient p,doctor d
+    where pr.pr_regID = r.regist_id
+    and pr.pr_IDcard = p.IDcard
+    and r.r_docID = d.doc_ID
+    and pr_regState != 3
+    and r.r_docID = #{rDocid}
+    and r.consult_date = #{consultDate}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ssmhis.model.PatRegistKey">
+    delete from pat_regist
+    where pr_IDcard = #{prIdcard,jdbcType=VARCHAR}
+      and pr_regID = #{prRegid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="pr_IDcard" keyProperty="prIdcard" parameterType="com.ssmhis.model.PatRegist" useGeneratedKeys="true">
+    insert into pat_regist (pr_regID, pr_regState, pr_delFlag)
+    values (#{prRegid,jdbcType=INTEGER}, #{prRegstate,jdbcType=INTEGER}, #{prDelflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="pr_IDcard" keyProperty="prIdcard" parameterType="com.ssmhis.model.PatRegist" useGeneratedKeys="true">
+    insert into pat_regist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prRegid != null">
+        pr_regID,
+      </if>
+      <if test="prRegstate != null">
+        pr_regState,
+      </if>
+      <if test="prDelflag != null">
+        pr_delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prRegid != null">
+        #{prRegid,jdbcType=INTEGER},
+      </if>
+      <if test="prRegstate != null">
+        #{prRegstate,jdbcType=INTEGER},
+      </if>
+      <if test="prDelflag != null">
+        #{prDelflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <insert id="addpatreg">
+    insert into pat_regist
+    (pr_IDcard, pr_regID)
+    values (#{prIdcard},#{prRegid})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.PatRegist">
+    update pat_regist
+    <set>
+      <if test="prRegstate != null">
+        pr_regState = #{prRegstate,jdbcType=INTEGER},
+      </if>
+      <if test="prDelflag != null">
+        pr_delFlag = #{prDelflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pr_IDcard = #{prIdcard,jdbcType=VARCHAR}
+      and pr_regID = #{prRegid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.PatRegist">
+    update pat_regist
+    set pr_regState = #{prRegstate,jdbcType=INTEGER},
+      pr_delFlag = #{prDelflag,jdbcType=INTEGER}
+    where pr_IDcard = #{prIdcard,jdbcType=VARCHAR}
+      and pr_regID = #{prRegid,jdbcType=INTEGER}
+  </update>
+  <update id="updateState">
+    update pat_regist
+    set pr_regState = 3
+    where pr_regID = #{registId}
+  </update>
+    <update id="changepstate">
+      update pat_regist
+      set pr_regState = 2
+      where pr_regID = #{prRegid}
+    </update>
+</mapper>

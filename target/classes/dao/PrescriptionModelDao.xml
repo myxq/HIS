@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.PrescriptionModelDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.PrescriptionModel">
+    <id column="prescrip_modID" jdbcType="INTEGER" property="prescripModid" />
+    <result column="prescrip_name" jdbcType="VARCHAR" property="prescripName" />
+    <result column="create_docID" jdbcType="INTEGER" property="createDocid" />
+    <result column="creation_date" jdbcType="TIMESTAMP" property="creationDate" />
+    <result column="usage_range" jdbcType="INTEGER" property="usageRange" />
+    <result column="delFlag" jdbcType="INTEGER" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    prescrip_modID, prescrip_name, create_docID, creation_date, usage_range, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prescription_model
+    where prescrip_modID = #{prescripModid,jdbcType=INTEGER}
+  </select>
+    <select id="selectWithName" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from prescription_model
+      <where>
+        <if test="prescripName != null and prescripName != '' ">
+        <bind name="newprescripName" value="'%'+prescripName+'%'"/>
+          and prescrip_name like #{newprescripName}
+        </if>
+      </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prescription_model
+    where prescrip_modID = #{prescripModid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="prescrip_modID" keyProperty="prescripModid" parameterType="com.ssmhis.model.PrescriptionModel" useGeneratedKeys="true">
+    insert into prescription_model (prescrip_name, create_docID, creation_date, 
+      usage_range, delFlag)
+    values (#{prescripName,jdbcType=VARCHAR}, #{createDocid,jdbcType=INTEGER}, #{creationDate,jdbcType=TIMESTAMP}, 
+      #{usageRange,jdbcType=INTEGER}, #{delflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="prescrip_modID" keyProperty="prescripModid" parameterType="com.ssmhis.model.PrescriptionModel" useGeneratedKeys="true">
+    insert into prescription_model
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prescripName != null">
+        prescrip_name,
+      </if>
+      <if test="createDocid != null">
+        create_docID,
+      </if>
+      <if test="creationDate != null">
+        creation_date,
+      </if>
+      <if test="usageRange != null">
+        usage_range,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prescripName != null">
+        #{prescripName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDocid != null">
+        #{createDocid,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usageRange != null">
+        #{usageRange,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.PrescriptionModel">
+    update prescription_model
+    <set>
+      <if test="prescripName != null">
+        prescrip_name = #{prescripName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDocid != null">
+        create_docID = #{createDocid,jdbcType=INTEGER},
+      </if>
+      <if test="creationDate != null">
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usageRange != null">
+        usage_range = #{usageRange,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where prescrip_modID = #{prescripModid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.PrescriptionModel">
+    update prescription_model
+    set prescrip_name = #{prescripName,jdbcType=VARCHAR},
+      create_docID = #{createDocid,jdbcType=INTEGER},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      usage_range = #{usageRange,jdbcType=INTEGER},
+      delFlag = #{delflag,jdbcType=INTEGER}
+    where prescrip_modID = #{prescripModid,jdbcType=INTEGER}
+  </update>
+</mapper>

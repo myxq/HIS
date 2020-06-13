@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.DiseaseDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Disease">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="disease_code" jdbcType="VARCHAR" property="diseaseCode" />
+    <result column="disease_name" jdbcType="VARCHAR" property="diseaseName" />
+    <result column="disease_ICD" jdbcType="VARCHAR" property="diseaseIcd" />
+    <result column="disease_categoryID" jdbcType="VARCHAR" property="diseaseCategoryid" />
+  </resultMap>
+    <resultMap id="SmallMap" type="com.ssmhis.model.Disease">
+        <result column="disease_name" jdbcType="VARCHAR" property="diseaseName" />
+    </resultMap>
+  <sql id="Base_Column_List">
+    ID, disease_code, disease_name, disease_ICD, disease_categoryID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from disease
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryDiseases" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+       from disease
+       where disease_name = #{diseaseName}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from disease
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.ssmhis.model.Disease" useGeneratedKeys="true">
+    insert into disease (disease_code, disease_name, disease_ICD, 
+      disease_categoryID)
+    values (#{diseaseCode,jdbcType=VARCHAR}, #{diseaseName,jdbcType=VARCHAR}, #{diseaseIcd,jdbcType=VARCHAR}, 
+      #{diseaseCategoryid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.ssmhis.model.Disease" useGeneratedKeys="true">
+    insert into disease
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diseaseCode != null">
+        disease_code,
+      </if>
+      <if test="diseaseName != null">
+        disease_name,
+      </if>
+      <if test="diseaseIcd != null">
+        disease_ICD,
+      </if>
+      <if test="diseaseCategoryid != null">
+        disease_categoryID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diseaseCode != null">
+        #{diseaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null">
+        #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseIcd != null">
+        #{diseaseIcd,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseCategoryid != null">
+        #{diseaseCategoryid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Disease">
+    update disease
+    <set>
+      <if test="diseaseCode != null">
+        disease_code = #{diseaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null">
+        disease_name = #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseIcd != null">
+        disease_ICD = #{diseaseIcd,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseCategoryid != null">
+        disease_categoryID = #{diseaseCategoryid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Disease">
+    update disease
+    set disease_code = #{diseaseCode,jdbcType=VARCHAR},
+      disease_name = #{diseaseName,jdbcType=VARCHAR},
+      disease_ICD = #{diseaseIcd,jdbcType=VARCHAR},
+      disease_categoryID = #{diseaseCategoryid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

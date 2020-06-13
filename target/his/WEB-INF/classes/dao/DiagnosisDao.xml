@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.DiagnosisDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Diagnosis">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="dia_mediNum" jdbcType="INTEGER" property="diaMedinum" />
+    <result column="dia_regID" jdbcType="INTEGER" property="diaRegid" />
+    <result column="dia_type" jdbcType="INTEGER" property="diaType" />
+    <result column="dise_date" jdbcType="TIMESTAMP" property="diseDate" />
+    <result column="dia_kind" jdbcType="INTEGER" property="diaKind" />
+    <result column="diseID" jdbcType="INTEGER" property="diseid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, dia_mediNum, dia_regID, dia_type, dise_date, dia_kind, diseID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from diagnosis
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from diagnosis
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.ssmhis.model.Diagnosis" useGeneratedKeys="true">
+    insert into diagnosis (dia_mediNum, dia_regID, dia_type, 
+      dise_date, dia_kind, diseID
+      )
+    values (#{diaMedinum,jdbcType=INTEGER}, #{diaRegid,jdbcType=INTEGER}, #{diaType,jdbcType=INTEGER}, 
+      #{diseDate,jdbcType=TIMESTAMP}, #{diaKind,jdbcType=INTEGER}, #{diseid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.ssmhis.model.Diagnosis" useGeneratedKeys="true">
+    insert into diagnosis
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diaMedinum != null">
+        dia_mediNum,
+      </if>
+      <if test="diaRegid != null">
+        dia_regID,
+      </if>
+      <if test="diaType != null">
+        dia_type,
+      </if>
+      <if test="diseDate != null">
+        dise_date,
+      </if>
+      <if test="diaKind != null">
+        dia_kind,
+      </if>
+      <if test="diseid != null">
+        diseID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diaMedinum != null">
+        #{diaMedinum,jdbcType=INTEGER},
+      </if>
+      <if test="diaRegid != null">
+        #{diaRegid,jdbcType=INTEGER},
+      </if>
+      <if test="diaType != null">
+        #{diaType,jdbcType=INTEGER},
+      </if>
+      <if test="diseDate != null">
+        #{diseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="diaKind != null">
+        #{diaKind,jdbcType=INTEGER},
+      </if>
+      <if test="diseid != null">
+        #{diseid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Diagnosis">
+    update diagnosis
+    <set>
+      <if test="diaMedinum != null">
+        dia_mediNum = #{diaMedinum,jdbcType=INTEGER},
+      </if>
+      <if test="diaRegid != null">
+        dia_regID = #{diaRegid,jdbcType=INTEGER},
+      </if>
+      <if test="diaType != null">
+        dia_type = #{diaType,jdbcType=INTEGER},
+      </if>
+      <if test="diseDate != null">
+        dise_date = #{diseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="diaKind != null">
+        dia_kind = #{diaKind,jdbcType=INTEGER},
+      </if>
+      <if test="diseid != null">
+        diseID = #{diseid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Diagnosis">
+    update diagnosis
+    set dia_mediNum = #{diaMedinum,jdbcType=INTEGER},
+      dia_regID = #{diaRegid,jdbcType=INTEGER},
+      dia_type = #{diaType,jdbcType=INTEGER},
+      dise_date = #{diseDate,jdbcType=TIMESTAMP},
+      dia_kind = #{diaKind,jdbcType=INTEGER},
+      diseID = #{diseid,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

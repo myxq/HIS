@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.ConstantItemsDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.ConstantItems">
+    <id column="con_ID" jdbcType="INTEGER" property="conId" />
+    <result column="con_typeID" jdbcType="INTEGER" property="conTypeid" />
+    <result column="con_code" jdbcType="VARCHAR" property="conCode" />
+    <result column="con_name" jdbcType="VARCHAR" property="conName" />
+    <result column="ci_delFlag" jdbcType="INTEGER" property="ciDelflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    con_ID, con_typeID, con_code, con_name, ci_delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from constant_items
+    where con_ID = #{conId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from constant_items
+    where con_ID = #{conId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="con_ID" keyProperty="conId" parameterType="com.ssmhis.model.ConstantItems" useGeneratedKeys="true">
+    insert into constant_items (con_typeID, con_code, con_name, 
+      ci_delFlag)
+    values (#{conTypeid,jdbcType=INTEGER}, #{conCode,jdbcType=VARCHAR}, #{conName,jdbcType=VARCHAR}, 
+      #{ciDelflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="con_ID" keyProperty="conId" parameterType="com.ssmhis.model.ConstantItems" useGeneratedKeys="true">
+    insert into constant_items
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="conTypeid != null">
+        con_typeID,
+      </if>
+      <if test="conCode != null">
+        con_code,
+      </if>
+      <if test="conName != null">
+        con_name,
+      </if>
+      <if test="ciDelflag != null">
+        ci_delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="conTypeid != null">
+        #{conTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="conCode != null">
+        #{conCode,jdbcType=VARCHAR},
+      </if>
+      <if test="conName != null">
+        #{conName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciDelflag != null">
+        #{ciDelflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.ConstantItems">
+    update constant_items
+    <set>
+      <if test="conTypeid != null">
+        con_typeID = #{conTypeid,jdbcType=INTEGER},
+      </if>
+      <if test="conCode != null">
+        con_code = #{conCode,jdbcType=VARCHAR},
+      </if>
+      <if test="conName != null">
+        con_name = #{conName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciDelflag != null">
+        ci_delFlag = #{ciDelflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where con_ID = #{conId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.ConstantItems">
+    update constant_items
+    set con_typeID = #{conTypeid,jdbcType=INTEGER},
+      con_code = #{conCode,jdbcType=VARCHAR},
+      con_name = #{conName,jdbcType=VARCHAR},
+      ci_delFlag = #{ciDelflag,jdbcType=INTEGER}
+    where con_ID = #{conId,jdbcType=INTEGER}
+  </update>
+</mapper>

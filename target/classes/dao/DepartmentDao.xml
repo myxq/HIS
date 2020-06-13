@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.DepartmentDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Department">
+    <id column="dep_ID" jdbcType="INTEGER" property="depId" />
+    <result column="dep_code" jdbcType="VARCHAR" property="depCode" />
+    <result column="dep_name" jdbcType="VARCHAR" property="depName" />
+    <result column="dep_depClass" jdbcType="INTEGER" property="depDepclass" />
+    <result column="dep_depType" jdbcType="VARCHAR" property="depDeptype" />
+    <result column="delFlag" jdbcType="BIT" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dep_ID, dep_code, dep_name, dep_depClass, dep_depType, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where dep_ID = #{depId,jdbcType=INTEGER}
+  </select>
+  <select id="querydep" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from department
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from department
+    where dep_ID = #{depId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="dep_ID" keyProperty="depId" parameterType="com.ssmhis.model.Department" useGeneratedKeys="true">
+    insert into department (dep_code, dep_name, dep_depClass, 
+      dep_depType, delFlag)
+    values (#{depCode,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR}, #{depDepclass,jdbcType=INTEGER}, 
+      #{depDeptype,jdbcType=VARCHAR}, #{delflag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" keyColumn="dep_ID" keyProperty="depId" parameterType="com.ssmhis.model.Department" useGeneratedKeys="true">
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="depCode != null">
+        dep_code,
+      </if>
+      <if test="depName != null">
+        dep_name,
+      </if>
+      <if test="depDepclass != null">
+        dep_depClass,
+      </if>
+      <if test="depDeptype != null">
+        dep_depType,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="depCode != null">
+        #{depCode,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null">
+        #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="depDepclass != null">
+        #{depDepclass,jdbcType=INTEGER},
+      </if>
+      <if test="depDeptype != null">
+        #{depDeptype,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Department">
+    update department
+    <set>
+      <if test="depCode != null">
+        dep_code = #{depCode,jdbcType=VARCHAR},
+      </if>
+      <if test="depName != null">
+        dep_name = #{depName,jdbcType=VARCHAR},
+      </if>
+      <if test="depDepclass != null">
+        dep_depClass = #{depDepclass,jdbcType=INTEGER},
+      </if>
+      <if test="depDeptype != null">
+        dep_depType = #{depDeptype,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=BIT},
+      </if>
+    </set>
+    where dep_ID = #{depId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Department">
+    update department
+    set dep_code = #{depCode,jdbcType=VARCHAR},
+      dep_name = #{depName,jdbcType=VARCHAR},
+      dep_depClass = #{depDepclass,jdbcType=INTEGER},
+      dep_depType = #{depDeptype,jdbcType=VARCHAR},
+      delFlag = #{delflag,jdbcType=BIT}
+    where dep_ID = #{depId,jdbcType=INTEGER}
+  </update>
+</mapper>

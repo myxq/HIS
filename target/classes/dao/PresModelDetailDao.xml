@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.PresModelDetailDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.PresModelDetail">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="prescrip_modID" jdbcType="INTEGER" property="prescripModid" />
+    <result column="drugID" jdbcType="INTEGER" property="drugid" />
+    <result column="usage" jdbcType="VARCHAR" property="usage" />
+    <result column="dosage" jdbcType="VARCHAR" property="dosage" />
+    <result column="frequency" jdbcType="VARCHAR" property="frequency" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="delFlag" jdbcType="INTEGER" property="delflag" />
+  </resultMap>
+  <resultMap id="ModDetailMap" type="com.ssmhis.model.PresModelDetail">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="prescrip_modID" jdbcType="INTEGER" property="prescripModid" />
+    <result column="drugID" jdbcType="INTEGER" property="drugid" />
+    <result column="usage" jdbcType="VARCHAR" property="usage" />
+    <result column="dosage" jdbcType="VARCHAR" property="dosage" />
+    <result column="frequency" jdbcType="VARCHAR" property="frequency" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <association property="drugs" javaType="com.ssmhis.model.Drugs">
+      <id column="drug_ID" jdbcType="INTEGER" property="drugId" />
+      <result column="drug_name" jdbcType="VARCHAR" property="drugName" />
+      <result column="drug_price" jdbcType="DECIMAL" property="drugPrice" />
+      <result column="drug_format" jdbcType="VARCHAR" property="drugFormat" />
+      <result column="drug_unit" jdbcType="VARCHAR" property="drugUnit" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, prescrip_modID, drugID, `usage`, dosage, frequency, `number`, delFlag
+  </sql>
+  <sql id="ModDetailList">
+    pmd.ID, pmd.prescrip_modID, pmd.drugID dI, `usage`, pmd.dosage, pmd.frequency,
+    pmd.`number`, d.drug_ID, d.drug_name, d.drug_price, d.drug_format, d.drug_unit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pres_model_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="searchModDetail" resultMap="ModDetailMap">
+      select
+      <include refid="ModDetailList"/>
+      from pres_model_detail pmd
+       left join drugs d on pmd.drugID = d.drug_ID
+      where  prescrip_modID = #{prescripModid}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pres_model_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.ssmhis.model.PresModelDetail" useGeneratedKeys="true">
+    insert into pres_model_detail (prescrip_modID, drugID, `usage`, 
+      dosage, frequency, `number`, 
+      delFlag)
+    values (#{prescripModid,jdbcType=INTEGER}, #{drugid,jdbcType=INTEGER}, #{usage,jdbcType=VARCHAR}, 
+      #{dosage,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{delflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.ssmhis.model.PresModelDetail" useGeneratedKeys="true">
+    insert into pres_model_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prescripModid != null">
+        prescrip_modID,
+      </if>
+      <if test="drugid != null">
+        drugID,
+      </if>
+      <if test="usage != null">
+        `usage`,
+      </if>
+      <if test="dosage != null">
+        dosage,
+      </if>
+      <if test="frequency != null">
+        frequency,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prescripModid != null">
+        #{prescripModid,jdbcType=INTEGER},
+      </if>
+      <if test="drugid != null">
+        #{drugid,jdbcType=INTEGER},
+      </if>
+      <if test="usage != null">
+        #{usage,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null">
+        #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.PresModelDetail">
+    update pres_model_detail
+    <set>
+      <if test="prescripModid != null">
+        prescrip_modID = #{prescripModid,jdbcType=INTEGER},
+      </if>
+      <if test="drugid != null">
+        drugID = #{drugid,jdbcType=INTEGER},
+      </if>
+      <if test="usage != null">
+        `usage` = #{usage,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null">
+        dosage = #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        frequency = #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.PresModelDetail">
+    update pres_model_detail
+    set prescrip_modID = #{prescripModid,jdbcType=INTEGER},
+      drugID = #{drugid,jdbcType=INTEGER},
+      `usage` = #{usage,jdbcType=VARCHAR},
+      dosage = #{dosage,jdbcType=VARCHAR},
+      frequency = #{frequency,jdbcType=VARCHAR},
+      `number` = #{number,jdbcType=INTEGER},
+      delFlag = #{delflag,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PersistentConfig">
+    <option name="historyConfigList">
+      <map>
+        <entry key="constant_items">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="ConstantItemsDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="ConstantItems" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="constant_items" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="con_ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="constant_items" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="department">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="DepartmentDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Department" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="department" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="dep_ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="department" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="diagnosis">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="DiagnosisDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Diagnosis" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="diagnosis" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="diagnosis" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="disease">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="DiseaseDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Disease" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="disease" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="disease" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="doctor">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="DoctorDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Doctor" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="doctor" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="doc_ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="doctor" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="drugs">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="DrugsDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Drugs" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="drugs" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="drug_ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="drugs" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="fee_detail">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="FeeDetailDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="FeeDetail" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="fee_detail" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="fd_regID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="fee_detail" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="invoice">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="InvoiceDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Invoice" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="invoice" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="invo_ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="invoice" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="medi_record">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="MediRecordDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="MediRecord" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="medi_record" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="med_recNum" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="medi_record" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="pat_regist">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="PatRegistDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="PatRegist" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="pat_regist" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="pr_IDcard" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="pat_regist" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="patient">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="PatientDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Patient" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="patient" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="IDcard" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="patient" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="pres_model_detail">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="PresModelDetailDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="PresModelDetail" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="pres_model_detail" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="pres_model_detail" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="prescription">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="PrescriptionDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Prescription" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="prescription" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="prescription_ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="prescription" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="prescription_detail">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="PrescriptionDetailDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="PrescriptionDetail" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="prescription_detail" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="prescription_ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="prescription_detail" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="prescription_model">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="PrescriptionModelDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="PrescriptionModel" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="prescription_model" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="prescrip_modID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="prescription_model" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="regist">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="RegistDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="Regist" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="regist" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="regist_id" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="regist" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="regist_rank">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="RegistRankDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="RegistRank" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="regist_rank" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="reg_rankID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="regist_rank" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+        <entry key="user">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoMvnPath" value="src/main/java" />
+              <option name="daoName" value="UserDao" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelMvnPath" value="src/main/java" />
+              <option name="modelName" value="User" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="user" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="primaryKey" value="ID" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="tableName" value="user" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlMvnPath" value="src/main/resources" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="initConfig">
+      <map>
+        <entry key="initConfig">
+          <value>
+            <Config>
+              <option name="comment" value="true" />
+              <option name="daoPackage" value="com.ssmhis.dao" />
+              <option name="daoPostfix" value="Dao" />
+              <option name="daoTargetFolder" value="$PROJECT_DIR$" />
+              <option name="jsr310Support" value="true" />
+              <option name="modelPackage" value="com.ssmhis.model" />
+              <option name="modelTargetFolder" value="$PROJECT_DIR$" />
+              <option name="mysql_8" value="true" />
+              <option name="name" value="initConfig" />
+              <option name="needToStringHashcodeEquals" value="true" />
+              <option name="offsetLimit" value="true" />
+              <option name="overrideXML" value="true" />
+              <option name="projectFolder" value="$PROJECT_DIR$" />
+              <option name="useSchemaPrefix" value="true" />
+              <option name="xmlPackage" value="dao" />
+              <option name="xmlTargetFolder" value="$PROJECT_DIR$" />
+            </Config>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="users">
+      <map>
+        <entry key="jdbc:mysql://localhost:3306/hospital?autoReconnect=true&amp;serverTimezone=GMT%2B8&amp;useSSL=False&amp;useUnicode=true&amp;characterEncoding=UTF-8">
+          <value>
+            <User>
+              <option name="username" value="root" />
+            </User>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

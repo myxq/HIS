@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.PrescriptionDetailDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.PrescriptionDetail">
+    <id column="prescription_ID" jdbcType="INTEGER" property="prescriptionId" />
+    <id column="drugID" jdbcType="INTEGER" property="drugid" />
+    <result column="drug_num" jdbcType="INTEGER" property="drugNum" />
+    <result column="usage" jdbcType="VARCHAR" property="usage" />
+    <result column="dosage" jdbcType="VARCHAR" property="dosage" />
+    <result column="frequency" jdbcType="VARCHAR" property="frequency" />
+    <result column="prescription_state" jdbcType="INTEGER" property="prescriptionState" />
+    <result column="delFlag" jdbcType="INTEGER" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    prescription_ID, drugID, drug_num, `usage`, dosage, frequency, prescription_state, 
+    delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.ssmhis.model.PrescriptionDetailKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prescription_detail
+    where prescription_ID = #{prescriptionId,jdbcType=INTEGER}
+      and drugID = #{drugid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ssmhis.model.PrescriptionDetailKey">
+    delete from prescription_detail
+    where prescription_ID = #{prescriptionId,jdbcType=INTEGER}
+      and drugID = #{drugid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="prescription_ID" keyProperty="prescriptionId" parameterType="com.ssmhis.model.PrescriptionDetail" useGeneratedKeys="true">
+    insert into prescription_detail (drugID, drug_num, `usage`, 
+      dosage, frequency, prescription_state, 
+      delFlag)
+    values (#{drugid,jdbcType=INTEGER}, #{drugNum,jdbcType=INTEGER}, #{usage,jdbcType=VARCHAR}, 
+      #{dosage,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}, #{prescriptionState,jdbcType=INTEGER}, 
+      #{delflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="prescription_ID" keyProperty="prescriptionId" parameterType="com.ssmhis.model.PrescriptionDetail" useGeneratedKeys="true">
+    insert into prescription_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="drugid != null">
+        drugID,
+      </if>
+      <if test="drugNum != null">
+        drug_num,
+      </if>
+      <if test="usage != null">
+        `usage`,
+      </if>
+      <if test="dosage != null">
+        dosage,
+      </if>
+      <if test="frequency != null">
+        frequency,
+      </if>
+      <if test="prescriptionState != null">
+        prescription_state,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="drugid != null">
+        #{drugid,jdbcType=INTEGER},
+      </if>
+      <if test="drugNum != null">
+        #{drugNum,jdbcType=INTEGER},
+      </if>
+      <if test="usage != null">
+        #{usage,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null">
+        #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionState != null">
+        #{prescriptionState,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+    <insert id="addtopreDet">
+        insert into
+        prescription_detail(prescription_ID, drugID, drug_num, "usage", dosage, frequency, prescription_state)
+        value (#{prescriptionId}, #{drugid}, #{drugNum}, #{usage}, #{dosage}, #{frequency}, 1)
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.PrescriptionDetail">
+    update prescription_detail
+    <set>
+      <if test="drugNum != null">
+        drug_num = #{drugNum,jdbcType=INTEGER},
+      </if>
+      <if test="usage != null">
+        `usage` = #{usage,jdbcType=VARCHAR},
+      </if>
+      <if test="dosage != null">
+        dosage = #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        frequency = #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionState != null">
+        prescription_state = #{prescriptionState,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where prescription_ID = #{prescriptionId,jdbcType=INTEGER}
+      and drugID = #{drugid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.PrescriptionDetail">
+    update prescription_detail
+    set drug_num = #{drugNum,jdbcType=INTEGER},
+      `usage` = #{usage,jdbcType=VARCHAR},
+      dosage = #{dosage,jdbcType=VARCHAR},
+      frequency = #{frequency,jdbcType=VARCHAR},
+      prescription_state = #{prescriptionState,jdbcType=INTEGER},
+      delFlag = #{delflag,jdbcType=INTEGER}
+    where prescription_ID = #{prescriptionId,jdbcType=INTEGER}
+      and drugID = #{drugid,jdbcType=INTEGER}
+  </update>
+</mapper>

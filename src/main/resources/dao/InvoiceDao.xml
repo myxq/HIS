@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.InvoiceDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Invoice">
+    <id column="invo_ID" jdbcType="INTEGER" property="invoId" />
+    <result column="invo_amount" jdbcType="DOUBLE" property="invoAmount" />
+    <result column="invo_state" jdbcType="INTEGER" property="invoState" />
+    <result column="collrefund_time" jdbcType="TIMESTAMP" property="collrefundTime" />
+    <result column="collrefund_perID" jdbcType="INTEGER" property="collrefundPerid" />
+    <result column="charge_ID" jdbcType="INTEGER" property="chargeId" />
+    <result column="red_invoID" jdbcType="INTEGER" property="redInvoid" />
+    <result column="state_invo" jdbcType="INTEGER" property="stateInvo" />
+    <result column="delFlag" jdbcType="INTEGER" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    invo_ID, invo_amount, invo_state, collrefund_time, collrefund_perID, charge_ID, red_invoID, 
+    state_invo, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from invoice
+    where invo_ID = #{invoId,jdbcType=INTEGER}
+  </select>
+  <select id="queryMaxNum" resultType="java.lang.Integer">
+    select max(invo_ID)
+    from invoice
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from invoice
+    where invo_ID = #{invoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="invo_ID" keyProperty="invoId" parameterType="com.ssmhis.model.Invoice" useGeneratedKeys="true">
+    insert into invoice (invo_amount, invo_state, collrefund_time, 
+      collrefund_perID, charge_ID, red_invoID, 
+      state_invo, delFlag)
+    values (#{invoAmount,jdbcType=DOUBLE}, #{invoState,jdbcType=INTEGER}, #{collrefundTime,jdbcType=TIMESTAMP}, 
+      #{collrefundPerid,jdbcType=INTEGER}, #{chargeId,jdbcType=INTEGER}, #{redInvoid,jdbcType=INTEGER}, 
+      #{stateInvo,jdbcType=INTEGER}, #{delflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="invo_ID" keyProperty="invoId" parameterType="com.ssmhis.model.Invoice" useGeneratedKeys="true">
+    insert into invoice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="invoAmount != null">
+        invo_amount,
+      </if>
+      <if test="invoState != null">
+        invo_state,
+      </if>
+      <if test="collrefundTime != null">
+        collrefund_time,
+      </if>
+      <if test="collrefundPerid != null">
+        collrefund_perID,
+      </if>
+      <if test="chargeId != null">
+        charge_ID,
+      </if>
+      <if test="redInvoid != null">
+        red_invoID,
+      </if>
+      <if test="stateInvo != null">
+        state_invo,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="invoAmount != null">
+        #{invoAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="invoState != null">
+        #{invoState,jdbcType=INTEGER},
+      </if>
+      <if test="collrefundTime != null">
+        #{collrefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collrefundPerid != null">
+        #{collrefundPerid,jdbcType=INTEGER},
+      </if>
+      <if test="chargeId != null">
+        #{chargeId,jdbcType=INTEGER},
+      </if>
+      <if test="redInvoid != null">
+        #{redInvoid,jdbcType=INTEGER},
+      </if>
+      <if test="stateInvo != null">
+        #{stateInvo,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertNewinvo">
+    insert into invoice
+    (invo_ID, invo_amount, collrefund_time, charge_ID)
+    value (#{invoId},#{invoAmount},#{collrefundTime},#{chargeId})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Invoice">
+    update invoice
+    <set>
+      <if test="invoAmount != null">
+        invo_amount = #{invoAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="invoState != null">
+        invo_state = #{invoState,jdbcType=INTEGER},
+      </if>
+      <if test="collrefundTime != null">
+        collrefund_time = #{collrefundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="collrefundPerid != null">
+        collrefund_perID = #{collrefundPerid,jdbcType=INTEGER},
+      </if>
+      <if test="chargeId != null">
+        charge_ID = #{chargeId,jdbcType=INTEGER},
+      </if>
+      <if test="redInvoid != null">
+        red_invoID = #{redInvoid,jdbcType=INTEGER},
+      </if>
+      <if test="stateInvo != null">
+        state_invo = #{stateInvo,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where invo_ID = #{invoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Invoice">
+    update invoice
+    set invo_amount = #{invoAmount,jdbcType=DOUBLE},
+      invo_state = #{invoState,jdbcType=INTEGER},
+      collrefund_time = #{collrefundTime,jdbcType=TIMESTAMP},
+      collrefund_perID = #{collrefundPerid,jdbcType=INTEGER},
+      charge_ID = #{chargeId,jdbcType=INTEGER},
+      red_invoID = #{redInvoid,jdbcType=INTEGER},
+      state_invo = #{stateInvo,jdbcType=INTEGER},
+      delFlag = #{delflag,jdbcType=INTEGER}
+    where invo_ID = #{invoId,jdbcType=INTEGER}
+  </update>
+</mapper>

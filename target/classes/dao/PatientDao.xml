@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.PatientDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Patient">
+    <id column="IDcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="pat_name" jdbcType="VARCHAR" property="patName" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="age_type" jdbcType="VARCHAR" property="ageType" />
+    <result column="birth" jdbcType="DATE" property="birth" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="p_medRecNum" jdbcType="INTEGER" property="pMedrecnum" />
+    <result column="p_delflag" jdbcType="INTEGER" property="pDelflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    IDcard, pat_name, gender, age, age_type, birth, address, p_medRecNum, p_delflag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from patient
+    where IDcard = #{idcard,jdbcType=VARCHAR}
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from patient
+    where IDcard = #{idcard,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="IDcard" keyProperty="idcard" parameterType="com.ssmhis.model.Patient" useGeneratedKeys="true">
+    insert into patient (pat_name, gender, age, 
+      age_type, birth, address, 
+      p_medRecNum, p_delflag)
+    values (#{patName,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{ageType,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, 
+      #{pMedrecnum,jdbcType=INTEGER}, #{pDelflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="IDcard" keyProperty="idcard" parameterType="com.ssmhis.model.Patient" useGeneratedKeys="true">
+    insert into patient
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="patName != null">
+        pat_name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="ageType != null">
+        age_type,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="pMedrecnum != null">
+        p_medRecNum,
+      </if>
+      <if test="pDelflag != null">
+        p_delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="patName != null">
+        #{patName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="ageType != null">
+        #{ageType,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="pMedrecnum != null">
+        #{pMedrecnum,jdbcType=INTEGER},
+      </if>
+      <if test="pDelflag != null">
+        #{pDelflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Patient">
+    update patient
+    <set>
+      <if test="patName != null">
+        pat_name = #{patName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="ageType != null">
+        age_type = #{ageType,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="pMedrecnum != null">
+        p_medRecNum = #{pMedrecnum,jdbcType=INTEGER},
+      </if>
+      <if test="pDelflag != null">
+        p_delflag = #{pDelflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where IDcard = #{idcard,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Patient">
+    update patient
+    set pat_name = #{patName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      age_type = #{ageType,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      p_medRecNum = #{pMedrecnum,jdbcType=INTEGER},
+      p_delflag = #{pDelflag,jdbcType=INTEGER}
+    where IDcard = #{idcard,jdbcType=VARCHAR}
+  </update>
+</mapper>

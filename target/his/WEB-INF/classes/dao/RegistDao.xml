@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.RegistDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Regist">
+    <id column="regist_id" jdbcType="INTEGER" property="registId" />
+    <result column="r_docID" jdbcType="INTEGER" property="rDocid" />
+    <result column="yn_medrec" jdbcType="INTEGER" property="ynMedrec" />
+    <result column="r_invoID" jdbcType="INTEGER" property="rInvoid" />
+    <result column="consult_date" jdbcType="DATE" property="consultDate" />
+    <result column="visit_state" jdbcType="INTEGER" property="visitState" />
+    <result column="settle_type" jdbcType="INTEGER" property="settleType" />
+    <result column="noon_Break" jdbcType="VARCHAR" property="noonBreak" />
+    <result column="reg_time" jdbcType="TIMESTAMP" property="regTime" />
+    <result column="r_regPerID" jdbcType="INTEGER" property="rRegperid" />
+    <result column="r_delFlag" jdbcType="INTEGER" property="rDelflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    regist_id, r_docID, yn_medrec, r_invoID, consult_date, visit_state, settle_type, 
+    noon_Break, reg_time, r_regPerID, r_delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from regist
+    where regist_id = #{registId,jdbcType=INTEGER}
+  </select>
+  <select id="queryPrePat" resultType="java.lang.Integer">
+      select count(*)
+      from regist
+      where r_docID = #{rDocid}
+    </select>
+  <select id="queryRegID" resultType="java.lang.Integer">
+    select MAX(regist_id)
+    from regist
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from regist
+    where regist_id = #{registId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="regist_id" keyProperty="registId" parameterType="com.ssmhis.model.Regist" useGeneratedKeys="true">
+    insert into regist (r_docID, yn_medrec, r_invoID, 
+      consult_date, visit_state, settle_type, 
+      noon_Break, reg_time, r_regPerID, 
+      r_delFlag)
+    values (#{rDocid,jdbcType=INTEGER}, #{ynMedrec,jdbcType=INTEGER}, #{rInvoid,jdbcType=INTEGER}, 
+      #{consultDate,jdbcType=DATE}, #{visitState,jdbcType=INTEGER}, #{settleType,jdbcType=INTEGER}, 
+      #{noonBreak,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, #{rRegperid,jdbcType=INTEGER}, 
+      #{rDelflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="regist_id" keyProperty="registId" parameterType="com.ssmhis.model.Regist" useGeneratedKeys="true">
+    insert into regist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rDocid != null">
+        r_docID,
+      </if>
+      <if test="ynMedrec != null">
+        yn_medrec,
+      </if>
+      <if test="rInvoid != null">
+        r_invoID,
+      </if>
+      <if test="consultDate != null">
+        consult_date,
+      </if>
+      <if test="visitState != null">
+        visit_state,
+      </if>
+      <if test="settleType != null">
+        settle_type,
+      </if>
+      <if test="noonBreak != null">
+        noon_Break,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="rRegperid != null">
+        r_regPerID,
+      </if>
+      <if test="rDelflag != null">
+        r_delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rDocid != null">
+        #{rDocid,jdbcType=INTEGER},
+      </if>
+      <if test="ynMedrec != null">
+        #{ynMedrec,jdbcType=INTEGER},
+      </if>
+      <if test="rInvoid != null">
+        #{rInvoid,jdbcType=INTEGER},
+      </if>
+      <if test="consultDate != null">
+        #{consultDate,jdbcType=DATE},
+      </if>
+      <if test="visitState != null">
+        #{visitState,jdbcType=INTEGER},
+      </if>
+      <if test="settleType != null">
+        #{settleType,jdbcType=INTEGER},
+      </if>
+      <if test="noonBreak != null">
+        #{noonBreak,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rRegperid != null">
+        #{rRegperid,jdbcType=INTEGER},
+      </if>
+      <if test="rDelflag != null">
+        #{rDelflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <insert id="addreg">
+    insert into regist
+    (regist_id,r_docID, yn_medrec, r_invoID, consult_date, settle_type, noon_Break, reg_time)
+    value (#{registId},#{rDocid},#{ynMedrec},#{rInvoid},#{consultDate},#{settleType},#{noonBreak},#{regTime})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Regist">
+    update regist
+    <set>
+      <if test="rDocid != null">
+        r_docID = #{rDocid,jdbcType=INTEGER},
+      </if>
+      <if test="ynMedrec != null">
+        yn_medrec = #{ynMedrec,jdbcType=INTEGER},
+      </if>
+      <if test="rInvoid != null">
+        r_invoID = #{rInvoid,jdbcType=INTEGER},
+      </if>
+      <if test="consultDate != null">
+        consult_date = #{consultDate,jdbcType=DATE},
+      </if>
+      <if test="visitState != null">
+        visit_state = #{visitState,jdbcType=INTEGER},
+      </if>
+      <if test="settleType != null">
+        settle_type = #{settleType,jdbcType=INTEGER},
+      </if>
+      <if test="noonBreak != null">
+        noon_Break = #{noonBreak,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rRegperid != null">
+        r_regPerID = #{rRegperid,jdbcType=INTEGER},
+      </if>
+      <if test="rDelflag != null">
+        r_delFlag = #{rDelflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where regist_id = #{registId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Regist">
+    update regist
+    set r_docID = #{rDocid,jdbcType=INTEGER},
+      yn_medrec = #{ynMedrec,jdbcType=INTEGER},
+      r_invoID = #{rInvoid,jdbcType=INTEGER},
+      consult_date = #{consultDate,jdbcType=DATE},
+      visit_state = #{visitState,jdbcType=INTEGER},
+      settle_type = #{settleType,jdbcType=INTEGER},
+      noon_Break = #{noonBreak,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      r_regPerID = #{rRegperid,jdbcType=INTEGER},
+      r_delFlag = #{rDelflag,jdbcType=INTEGER}
+    where regist_id = #{registId,jdbcType=INTEGER}
+  </update>
+</mapper>

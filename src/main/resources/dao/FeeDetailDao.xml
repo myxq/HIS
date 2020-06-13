@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.FeeDetailDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.FeeDetail">
+    <id column="fd_regID" jdbcType="INTEGER" property="fdRegid" />
+    <id column="fd_drugID" jdbcType="INTEGER" property="fdDrugid" />
+    <result column="fd_checkProID" jdbcType="INTEGER" property="fdCheckproid" />
+    <result column="fd_drugNum" jdbcType="INTEGER" property="fdDrugnum" />
+    <result column="fd_openTime" jdbcType="TIMESTAMP" property="fdOpentime" />
+    <result column="fd_state" jdbcType="INTEGER" property="fdState" />
+    <result column="fd_delFlag" jdbcType="INTEGER" property="fdDelflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    fd_regID, fd_drugID, fd_checkProID, fd_drugNum, fd_openTime, fd_state, fd_delFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.ssmhis.model.FeeDetailKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fee_detail
+    where fd_regID = #{fdRegid,jdbcType=INTEGER}
+      and fd_drugID = #{fdDrugid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ssmhis.model.FeeDetailKey">
+    delete from fee_detail
+    where fd_regID = #{fdRegid,jdbcType=INTEGER}
+      and fd_drugID = #{fdDrugid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="fd_regID" keyProperty="fdRegid" parameterType="com.ssmhis.model.FeeDetail" useGeneratedKeys="true">
+    insert into fee_detail (fd_drugID, fd_checkProID, fd_drugNum, 
+      fd_openTime, fd_state, fd_delFlag
+      )
+    values (#{fdDrugid,jdbcType=INTEGER}, #{fdCheckproid,jdbcType=INTEGER}, #{fdDrugnum,jdbcType=INTEGER}, 
+      #{fdOpentime,jdbcType=TIMESTAMP}, #{fdState,jdbcType=INTEGER}, #{fdDelflag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="fd_regID" keyProperty="fdRegid" parameterType="com.ssmhis.model.FeeDetail" useGeneratedKeys="true">
+    insert into fee_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fdDrugid != null">
+        fd_drugID,
+      </if>
+      <if test="fdCheckproid != null">
+        fd_checkProID,
+      </if>
+      <if test="fdDrugnum != null">
+        fd_drugNum,
+      </if>
+      <if test="fdOpentime != null">
+        fd_openTime,
+      </if>
+      <if test="fdState != null">
+        fd_state,
+      </if>
+      <if test="fdDelflag != null">
+        fd_delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fdDrugid != null">
+        #{fdDrugid,jdbcType=INTEGER},
+      </if>
+      <if test="fdCheckproid != null">
+        #{fdCheckproid,jdbcType=INTEGER},
+      </if>
+      <if test="fdDrugnum != null">
+        #{fdDrugnum,jdbcType=INTEGER},
+      </if>
+      <if test="fdOpentime != null">
+        #{fdOpentime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fdState != null">
+        #{fdState,jdbcType=INTEGER},
+      </if>
+      <if test="fdDelflag != null">
+        #{fdDelflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.FeeDetail">
+    update fee_detail
+    <set>
+      <if test="fdCheckproid != null">
+        fd_checkProID = #{fdCheckproid,jdbcType=INTEGER},
+      </if>
+      <if test="fdDrugnum != null">
+        fd_drugNum = #{fdDrugnum,jdbcType=INTEGER},
+      </if>
+      <if test="fdOpentime != null">
+        fd_openTime = #{fdOpentime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fdState != null">
+        fd_state = #{fdState,jdbcType=INTEGER},
+      </if>
+      <if test="fdDelflag != null">
+        fd_delFlag = #{fdDelflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where fd_regID = #{fdRegid,jdbcType=INTEGER}
+      and fd_drugID = #{fdDrugid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.FeeDetail">
+    update fee_detail
+    set fd_checkProID = #{fdCheckproid,jdbcType=INTEGER},
+      fd_drugNum = #{fdDrugnum,jdbcType=INTEGER},
+      fd_openTime = #{fdOpentime,jdbcType=TIMESTAMP},
+      fd_state = #{fdState,jdbcType=INTEGER},
+      fd_delFlag = #{fdDelflag,jdbcType=INTEGER}
+    where fd_regID = #{fdRegid,jdbcType=INTEGER}
+      and fd_drugID = #{fdDrugid,jdbcType=INTEGER}
+  </update>
+</mapper>

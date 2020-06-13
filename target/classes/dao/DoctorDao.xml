@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmhis.dao.DoctorDao">
+  <resultMap id="BaseResultMap" type="com.ssmhis.model.Doctor">
+    <id column="doc_ID" jdbcType="INTEGER" property="docId" />
+    <result column="doc_name" jdbcType="VARCHAR" property="docName" />
+    <result column="doc_dutyID" jdbcType="INTEGER" property="docDutyid" />
+    <result column="doc_depID" jdbcType="INTEGER" property="docDepid" />
+    <result column="doc_username" jdbcType="VARCHAR" property="docUsername" />
+    <result column="doc_password" jdbcType="VARCHAR" property="docPassword" />
+    <result column="doc_regRankID" jdbcType="INTEGER" property="docRegrankid" />
+    <result column="delFlag" jdbcType="INTEGER" property="delflag" />
+  </resultMap>
+
+  <resultMap id="WithRegRank" type="com.ssmhis.model.Doctor">
+    <id column="doc_ID" property="docId"/>
+    <association property="registRank" javaType="com.ssmhis.model.RegistRank">
+      <id column="reg_rankID" property="regRankid"/>
+      <result column="rank_name" property="rankName"/>
+      <result column="reg_fee" property="regFee"/>
+      <result column="reg_limit" property="regLimit"/>
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    doc_ID, doc_name, doc_dutyID, doc_depID, doc_username, doc_password, doc_regRankID, 
+    delFlag
+  </sql>
+  <sql id="WithRank">
+    doc_ID, reg_rankID, rank_name, reg_fee, reg_limit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doctor
+    where doc_ID = #{docId,jdbcType=INTEGER}
+  </select>
+    <select id="querydocwithdep" resultMap="BaseResultMap">
+        select
+      <include refid="Base_Column_List" />
+      from doctor
+      where doc_depID = #{docDepid}
+    </select>
+  <select id="querydoc" resultMap="WithRegRank">
+        select
+        <include refid="WithRank"/>
+        from doctor left join regist_rank
+        on doc_regRankID = reg_rankID
+        where doc_ID = #{docId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doctor
+    where doc_ID = #{docId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="doc_ID" keyProperty="docId" parameterType="com.ssmhis.model.Doctor" useGeneratedKeys="true">
+    insert into doctor (doc_name, doc_dutyID, doc_depID, 
+      doc_username, doc_password, doc_regRankID, 
+      delFlag)
+    values (#{docName,jdbcType=VARCHAR}, #{docDutyid,jdbcType=INTEGER}, #{docDepid,jdbcType=INTEGER}, 
+      #{docUsername,jdbcType=VARCHAR}, #{docPassword,jdbcType=VARCHAR}, #{docRegrankid,jdbcType=INTEGER}, 
+      #{delflag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="doc_ID" keyProperty="docId" parameterType="com.ssmhis.model.Doctor" useGeneratedKeys="true">
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="docName != null">
+        doc_name,
+      </if>
+      <if test="docDutyid != null">
+        doc_dutyID,
+      </if>
+      <if test="docDepid != null">
+        doc_depID,
+      </if>
+      <if test="docUsername != null">
+        doc_username,
+      </if>
+      <if test="docPassword != null">
+        doc_password,
+      </if>
+      <if test="docRegrankid != null">
+        doc_regRankID,
+      </if>
+      <if test="delflag != null">
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="docName != null">
+        #{docName,jdbcType=VARCHAR},
+      </if>
+      <if test="docDutyid != null">
+        #{docDutyid,jdbcType=INTEGER},
+      </if>
+      <if test="docDepid != null">
+        #{docDepid,jdbcType=INTEGER},
+      </if>
+      <if test="docUsername != null">
+        #{docUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="docPassword != null">
+        #{docPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="docRegrankid != null">
+        #{docRegrankid,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssmhis.model.Doctor">
+    update doctor
+    <set>
+      <if test="docName != null">
+        doc_name = #{docName,jdbcType=VARCHAR},
+      </if>
+      <if test="docDutyid != null">
+        doc_dutyID = #{docDutyid,jdbcType=INTEGER},
+      </if>
+      <if test="docDepid != null">
+        doc_depID = #{docDepid,jdbcType=INTEGER},
+      </if>
+      <if test="docUsername != null">
+        doc_username = #{docUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="docPassword != null">
+        doc_password = #{docPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="docRegrankid != null">
+        doc_regRankID = #{docRegrankid,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        delFlag = #{delflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where doc_ID = #{docId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssmhis.model.Doctor">
+    update doctor
+    set doc_name = #{docName,jdbcType=VARCHAR},
+      doc_dutyID = #{docDutyid,jdbcType=INTEGER},
+      doc_depID = #{docDepid,jdbcType=INTEGER},
+      doc_username = #{docUsername,jdbcType=VARCHAR},
+      doc_password = #{docPassword,jdbcType=VARCHAR},
+      doc_regRankID = #{docRegrankid,jdbcType=INTEGER},
+      delFlag = #{delflag,jdbcType=INTEGER}
+    where doc_ID = #{docId,jdbcType=INTEGER}
+  </update>
+</mapper>
